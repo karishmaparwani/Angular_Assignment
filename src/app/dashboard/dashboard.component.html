@@ -1,0 +1,27 @@
+<cdk-virtual-scroll-viewport [itemSize]="10" class="viewport" >
+  <div class="container" >
+    <mat-toolbar >
+      <mat-toolbar-row>
+        <span>Image Gallery</span>
+        <span class="icon-spacer"></span>
+        <input matInput placeholder="Search by title" [(ngModel)]="searchTerm" style="height:30px">
+        <mat-icon matSuffix style="margin-left: 3px ;">search </mat-icon>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-card class="card" *cdkVirtualFor="let card of cards | data:searchTerm" >
+
+      <mat-card-title>{{card.title}}</mat-card-title>
+
+      <img mat-card-image [defaultImage]="defaultImage" [lazyLoad]="card.img">
+      <mat-card-content>
+        <p>
+          {{card.description}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+
+  </div>
+</cdk-virtual-scroll-viewport>
